@@ -6,7 +6,7 @@ const isSessionUser = require('./middleware/isSessionUser');
 const list = require('./routes/list');*/
 
 module.exports = (app)=>{
-  app.get('/getEntries',entries.fetch);
+  app.get('/Entries',entries.fetch);
 
   /*app.get('/register',(req,res)=>{
     res.render('register',{

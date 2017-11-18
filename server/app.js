@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const routes = require('./routes');
 const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/myweibo',{
   useMongoClient: true
 });
