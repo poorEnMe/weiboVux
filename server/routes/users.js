@@ -1,9 +1,23 @@
-var express = require('express');
-var router = express.Router();
+const User = require('../models/userModel');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-module.exports = router;
+exports.loginCheck = (req,res,next)=>{
+  let data = req.body;
+  User.authenticate(data.account,data.xpassword,function (err,user) {
+    if (err) return next(err);
+    if(user){
+      res.send(true);
+    }else{
+      res.send(false);
+    }
+  })
+};
+exports.loginSubmit = (req,res,next)=>{
+  let data = req.body;
+  User.authenticate(data.username,data.userpassword,function (err,user) {
+    if(err) return next(err);
+    if(user){
+      req.session.uid = user.id;
+      res.redirect('/index');
+    }
+  });
+};

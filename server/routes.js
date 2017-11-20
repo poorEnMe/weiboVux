@@ -1,12 +1,16 @@
 const entries = require('./routes/entryRouter');
-/*const user = require('./routes/users');
-const comment = require('./routes/commentRoutes');
+const user = require('./routes/users');
+/*const comment = require('./routes/commentRoutes');
 const info = require('./routes/info');
 const isSessionUser = require('./middleware/isSessionUser');
 const list = require('./routes/list');*/
 
 module.exports = (app)=>{
   app.get('/Entries',entries.fetch);
+
+
+  app.post('/user/loginCheck',user.loginCheck);
+  app.post('/user/login',user.loginSubmit);
 
   /*app.get('/register',(req,res)=>{
     res.render('register',{
@@ -21,7 +25,7 @@ module.exports = (app)=>{
       title:"登录"
     });
   });
-  app.post('/login/check',user.loginCheck);
+
   app.post('/login',user.loginSubmit);
   app.get('/isLogin',user.isLogin);
   app.get('/logout',user.logout);
